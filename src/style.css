@@ -82,8 +82,7 @@ header {
   display: flex;
 }
 .current-weather-icon {
-  font-size: 44px;
-  margin-top: 22px;
+  width: 88px;
 }
 .current-temperature {
   font-size: 88px;
