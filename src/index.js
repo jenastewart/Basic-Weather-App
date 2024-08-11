@@ -53,34 +53,46 @@ function submitSearch(event) {
   searchCity(searchInput.value);
 }
 
+function displayForecast(response) {
+  let forecastHtml = "";
+
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
+      <div class="weather-forecast-days">
+        <div class="weather-forecast-date">${formatDay(day.time)}</div>
+        <div >
+        <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
+        </div>
+        <div class="weather-forecast-range">
+          <div class="weather-forecast-range-temperature">
+            <strong>${Math.round(day.temperature.maximum)}º</strong>
+          </div>
+          <div class="weather-forecast-range-temperature">${Math.round(
+            day.temperature.minimum
+          )}º</div>
+        </div>
+      </div>
+    `;
+    }
+  });
+
+  forecastElement.innerHTML = forecastHtml;
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
 function getForecast(city) {
   apiKey = "a17bt048aac153ed9acb6efaf1a6aobf";
   apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayForecast);
-}
-
-function displayForecast(response) {
-  let days = ["Tues", "Wed", "Thurs", "Fri", "Sat"];
-  let forecastHtml = "";
-
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
-      <div class="weather-forecast-days">
-        <div class="weather-forecast-date">${day}</div>
-        <div class="weather-forecast-icon">☀️</div>
-        <div class="weather-forecast-range">
-          <div class="weather-forecast-range-temperature">
-            <strong>19</strong>
-          </div>
-          <div class="weather-forecast-range-temperature">13</div>
-        </div>
-      </div>
-    `;
-  });
-
-  forecastElement.innerHTML = forecastHtml;
 }
 
 let forecastElement = document.querySelector("#forecast");
