@@ -51,7 +51,34 @@ function submitSearch(event) {
   searchCity(searchInput.value);
 }
 
+function displayForecast() {
+  let days = ["Tues", "Wed", "Thurs", "Fri", "Sat"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+      <div class="weather-forecast-days">
+        <div class="weather-forecast-date">${day}</div>
+        <div class="weather-forecast-icon">☀️</div>
+        <div class="weather-forecast-range">
+          <div class="weather-forecast-range-temperature">
+            <strong>19</strong>
+          </div>
+          <div class="weather-forecast-range-temperature">13</div>
+        </div>
+      </div>
+    `;
+  });
+
+  forecastElement.innerHTML = forecastHtml;
+}
+
+let forecastElement = document.querySelector("#forecast");
+
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", submitSearch);
 
 searchCity("Portland");
+displayForecast();
