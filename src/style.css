@@ -94,17 +94,18 @@ header {
   font-size: 28px;
   margin-top: 15px;
 }
-footer {
-  padding: 20px 0 0 0;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-}
+
 .weather-forecast {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin: 20px 0 0 0;
+}
+.weather-forecast-days:hover {
+  background: #6f7cf2;
+  border: 2px solid #6a75b8;
+  color: #d1d9fe;
+  cursor: pointer;
 }
 .weather-forecast-days {
   text-align: center;
@@ -112,6 +113,7 @@ footer {
   border: 2px solid #d1d9fe;
   border-radius: 10px;
   padding: 20px 1px;
+  transition: all 200ms ease-in-out;
 }
 .weather-forecast-date {
   font-size: 16px;
@@ -127,4 +129,10 @@ footer {
 }
 .weather-forecast-range-temperature {
   padding: 10px 10px 0 10px;
+}
+footer {
+  padding: 20px 0 0 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
 }
